@@ -1,0 +1,28 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    container_name: mariadb-11.0.2-jammy
+    image: mariadb:11.0.2-jammy
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: example
+    ports:
+      - 3306:3306
+
+  adminer:
+    container_name: adminer-latest
+    image: adminer:latest
+    restart: always
+    ports:
+      - 9080:8080
+
+  smtp4dev:
+    container_name: smtp4dev-latest
+    image: rnwood/smtp4dev:v3
+    restart: always
+    ports:
+      - '9081:80'
+      - '9025:25'
